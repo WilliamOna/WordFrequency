@@ -11,6 +11,7 @@ public class Application{
         System.out.println("Enter a string for the program to count");
         String input = scan.nextLine();
         wordCounter(input);
+        scan.close();
 
     }
 
@@ -42,7 +43,7 @@ public class Application{
         scan.close();
     }
 
-    // returns true if input string only continas letters
+    // returns true if input string only contains letters
     private static boolean containsOnlyLetters(String input){
         //uses an IntStream from input to check to see if each character is a letter
         return input.chars().allMatch(Character::isLetter);
