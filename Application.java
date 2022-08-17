@@ -17,7 +17,20 @@ public class Application{
     private static void wordCounter(String input) {
         //initialize hashmap to keep track of counts
         Map<String,Integer> words = new HashMap<>();
+        populateWords(input, words);
 
+        //order the items by frequency in a priority queue
+        PriorityQueue<Entry<String,Integer>> pq = new PriorityQueue<>((a,b) -> b.getValue()-a.getValue());
+        words.entrySet().stream().forEach(e-> pq.add(e));
+
+        //print out each value and key
+        while(!pq.isEmpty()){
+            Entry<String,Integer> current = pq.poll();
+            System.out.println(current.getValue()+ " " + current.getKey());
+        }
+    }
+
+    private static void populateWords(String input, Map<String, Integer> words) {
         //use scanner to parse through input string and populate HashMap
         Scanner scan = new Scanner(input);
         while(scan.hasNext()){
@@ -27,17 +40,6 @@ public class Application{
             if(containsOnlyLetters(next)) words.put(next, words.getOrDefault(next, 0)+1);
         }
         scan.close();
-
-        //order the items by frequency in a priority queue
-        PriorityQueue<Entry<String,Integer>> pq = new PriorityQueue<>((a,b) -> b.getValue()-a.getValue());
-        words.entrySet().stream().forEach(e-> pq.add(e));
-        System.out.println(pq);
-
-        //print out each value and key
-        while(!pq.isEmpty()){
-            Entry<String,Integer> current = pq.poll();
-            System.out.println(current.getValue()+ " " + current.getKey());
-        }
     }
 
     // returns true if input string only continas letters
