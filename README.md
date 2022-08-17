@@ -24,6 +24,8 @@ The following steps are used to run the application with the least amount of add
 
 1. Clone the project:
     > git clone https://github.com/WilliamOna/WordFrequency.git
+1. cd into the directory
+    > cd WordFrequency
 1. compile the source code:
     > javac Application.java
 1. The step above should generate a file called 'Application.class'. Run this file:
